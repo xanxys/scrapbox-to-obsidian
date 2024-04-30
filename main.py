@@ -82,6 +82,11 @@ def convert_linkish(content: str, entire_line: bool) -> str:
         url = content + ".png"
         return f"![]({url})"
 
+    # embed youtube video
+    if content.startswith("https://www.youtube.com/watch?v="):
+        url = content
+        return f"![]({url})"
+
     # check URL
     PAT_URL = r'^(.*\s+)(https?://\S+)$'
     m = re.match(PAT_URL, content)
