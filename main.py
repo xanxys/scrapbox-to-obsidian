@@ -157,9 +157,9 @@ def convert_normal_line(line: str) -> str:
     if line_is_linkish:
         return convert_linkish(line.strip("[]"), True)
 
-    num_tabs, content = separate_head(line, "\t")
-    if num_tabs > 0:
-        return "\t" * (num_tabs - 1) + "* " + convert_line_content(content)
+    num_indents, content = separate_head(line, " \t")
+    if num_indents > 0:
+        return "\t" * (num_indents - 1) + "* " + convert_line_content(content)
     
     return convert_line_content(content)
 
