@@ -88,6 +88,13 @@ def convert_linkish(content: str, entire_line: bool) -> str:
         return f"![]({url})"
 
     # check URL
+    PAT_URL_ONLY = r'^(https?://\S+)$'
+    m = re.match(PAT_URL_ONLY, content)
+    if m:
+        url = m.group(1)
+        return f" {url} "
+
+    # check desc + URL
     PAT_URL = r'^(.*\s+)(https?://\S+)$'
     m = re.match(PAT_URL, content)
     if m:
